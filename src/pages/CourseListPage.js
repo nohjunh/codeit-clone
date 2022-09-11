@@ -23,13 +23,12 @@ function CourseListPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // submit했을때 웹브라우저가 저절로 페이지를 이동하는 것을 방지
-
     // 원하는 쿼리 파라미터를 객체의 프로퍼티로 넘겨준다.
     setSearchParams(
       keyword
         ? {
             keyword, // keyword값이 없다면 빈 객체 {}가 넘겨질 수 있도록 삼항연산자 구성
-          }
+          } // keyword: keyword 로 해도되고 둘이 같으니까 keyword 하나만 적어줘도 된다.
         : {}
     ); // 파라미터로 객체를 받는다.
   };
@@ -54,7 +53,7 @@ function CourseListPage() {
 
       <p className={styles.count}>총 {courses.length}개 코스</p>
 
-      {courses.length === 0 ? (
+      {initKeyword && courses.length === 0 ? (
         <Warn
           className={styles.emptyList}
           title="조건에 맞는 코스가 없어요."
