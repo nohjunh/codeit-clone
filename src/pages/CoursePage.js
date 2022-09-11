@@ -1,13 +1,18 @@
-import { addWishlist, getCourseBySlug } from '../api';
-import Button from '../components/Button';
-import Container from '../components/Container';
-import Card from '../components/Card';
-import CourseIcon from '../components/CourseIcon';
-import getCourseColor from '../utils/getCourseColor';
-import styles from './CoursePage.module.css';
+import { addWishlist, getCourseBySlug } from "../api";
+import Button from "../components/Button";
+import Container from "../components/Container";
+import Card from "../components/Card";
+import CourseIcon from "../components/CourseIcon";
+import getCourseColor from "../utils/getCourseColor";
+import styles from "./CoursePage.module.css";
+import { useParams } from "react-router-dom";
 
 function CoursePage() {
-  const course = getCourseBySlug('react-frontend-development');
+  // 리액트 라우터 dom 에서 제공하는 커스텀 훅인 useParams()
+  // useParams()가 리턴하는 객체에는 현재 경로의 파라미터들이 저장되어 있다.
+  // 이 객체에 우리가 정의한 courseSlug라는 값도 저장되어 있기에 디스트럭처링으로 courseSlug값을 가져온다.
+  const { courseSlug } = useParams();
+  const course = getCourseBySlug(courseSlug);
   const courseColor = getCourseColor(course?.code);
 
   const headerStyle = {
