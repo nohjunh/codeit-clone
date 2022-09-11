@@ -4,7 +4,12 @@ import UserMenu from "./UserMenu";
 import logoImg from "../assets/logo.svg";
 import styles from "./Nav.module.css";
 
+// 리액트에서는 인라인스타일을 지정할때 HTML과 다르게 문자열이 아니라
+// 객체로 스타일 속성값을 지정해주어야 한다.
+// 속성: '값' 형식으로 작성
+
 function getLinkStyle({ isActive }) {
+  // 해당 Menu가 액티브상태이면 underline 적용
   return {
     textDecoration: isActive ? "underline" : "",
   };
