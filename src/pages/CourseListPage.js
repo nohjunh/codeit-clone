@@ -1,14 +1,16 @@
-import { useState } from 'react';
-import ListPage from '../components/ListPage';
-import Warn from '../components/Warn';
-import CourseItem from '../components/CourseItem';
-import { getCourses } from '../api';
-import styles from './CourseListPage.module.css';
-import searchBarStyles from '../components/SearchBar.module.css';
-import searchIcon from '../assets/search.svg';
+import { useState } from "react";
+import ListPage from "../components/ListPage";
+import Warn from "../components/Warn";
+import CourseItem from "../components/CourseItem";
+import { getCourses } from "../api";
+import styles from "./CourseListPage.module.css";
+import searchBarStyles from "../components/SearchBar.module.css";
+import searchIcon from "../assets/search.svg";
 
 function CourseListPage() {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
+  // getCourses()라는 함수로 코스 목록 데이터를 가져와서
+  // (각 요소마다 CoursesItem이라는 컴포넌트로 렌더링 해주는 함수임.)
   const courses = getCourses();
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);

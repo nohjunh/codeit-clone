@@ -1,20 +1,21 @@
-import { useState } from 'react';
-import { getQuestions } from '../api';
-import DateText from '../components/DateText';
-import ListPage from '../components/ListPage';
-import Warn from '../components/Warn';
-import Card from '../components/Card';
-import Avatar from '../components/Avatar';
-import styles from './QuestionListPage.module.css';
-import searchBarStyles from '../components/SearchBar.module.css';
-import searchIcon from '../assets/search.svg';
+import { useState } from "react";
+import { getQuestions } from "../api";
+import DateText from "../components/DateText";
+import ListPage from "../components/ListPage";
+import Warn from "../components/Warn";
+import Card from "../components/Card";
+import Avatar from "../components/Avatar";
+import styles from "./QuestionListPage.module.css";
+import searchBarStyles from "../components/SearchBar.module.css";
+import searchIcon from "../assets/search.svg";
+import { Link } from "react-router-dom";
 
 function QuestionItem({ question }) {
   return (
     <Card className={styles.questionItem} key={question.title}>
       <div className={styles.info}>
         <p className={styles.title}>
-          {question.title}
+          <Link to={`/questions/4{question.id}`}>{question.title}</Link>
           {question.answers.length > 0 && (
             <span className={styles.count}>[{question.answers.length}]</span>
           )}
@@ -34,7 +35,7 @@ function QuestionItem({ question }) {
 }
 
 function QuestionListPage() {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
   const questions = getQuestions();
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);
