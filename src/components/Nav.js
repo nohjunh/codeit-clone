@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Container from "./Container";
 import UserMenu from "./UserMenu";
 import logoImg from "../assets/logo.svg";
 import styles from "./Nav.module.css";
+
+function getLinkStyle({ isActive }) {
+  return {
+    textDecoration: isActive ? "underline" : "",
+  };
+}
 
 // Link 컴포넌트에서는 to 라는 Prop을 사용한다.
 function Nav() {
@@ -14,10 +20,14 @@ function Nav() {
         </Link>
         <ul className={styles.menu}>
           <li>
-            <Link to="/courses">카탈로그</Link>
+            <NavLink style={getLinkStyle} to="/courses">
+              카탈로그
+            </NavLink>
           </li>
           <li>
-            <Link to="questions">커뮤니티</Link>
+            <NavLink style={getLinkStyle} to="questions">
+              커뮤니티
+            </NavLink>
           </li>
           <li>
             <UserMenu />
