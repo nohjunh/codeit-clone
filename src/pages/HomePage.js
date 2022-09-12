@@ -1,12 +1,17 @@
-import Button from '../components/Button';
-import Container from '../components/Container';
-import Lined from '../components/Lined';
-import styles from './HomePage.module.css';
-import landingImg from '../assets/landing.svg';
+import { Helmet } from "react-helmet";
+import Button from "../components/Button";
+import Container from "../components/Container";
+import Lined from "../components/Lined";
+import styles from "./HomePage.module.css";
+import landingImg from "../assets/landing.svg";
 
 function HomePage() {
   return (
+    // npm install --save react-helmet 해서 헬멧으로 title명 바꾸기 기능 추가
     <>
+      <Helmet>
+        <title>Codethat - 메인 홈페이지</title>
+      </Helmet>
       <div className={styles.bg} />
       <Container className={styles.container}>
         <div className={styles.texts}>
