@@ -6,12 +6,14 @@ import CourseIcon from "../components/CourseIcon";
 import getCourseColor from "../utils/getCourseColor";
 import styles from "./CoursePage.module.css";
 import { Navigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CoursePage() {
   // 리액트 라우터 dom 에서 제공하는 커스텀 훅인 useParams()
   // useParams()가 리턴하는 객체에는 현재 경로의 파라미터들이 저장되어 있다.
   // 이 객체에 우리가 정의한 courseSlug라는 값도 저장되어 있기에 디스트럭처링으로 courseSlug값을 가져온다.
   const { courseSlug } = useParams();
+  const navigate = useNavigate();
   const course = getCourseBySlug(courseSlug); // course 변수 !
   const courseColor = getCourseColor(course?.code);
   // CoursePage를 렌더링할 때 courseSlug값에 해당하는 course를 찾을 수 없으면
@@ -25,8 +27,13 @@ function CoursePage() {
     borderTopColor: courseColor,
   };
 
+  // 코스 담기 버튼을 눌렀을 때 실행할 함수
   const handleAddWishlistClick = () => {
-    addWishlist(course?.slug);
+    addWishlist(course?.slug); // 위시리스트에 추가한 다음
+    // useNavigate 커스텀 훅을 사용해 코드로 페이지 이동
+    // 이동할 경로를 파라미터로 넘겨준다.
+    // 코드를 사용해서 페이지를 이동해야 될 경우 useNavigate 커스텀 훅을 사용
+    navigate("/wishlist");
   };
 
   return (
